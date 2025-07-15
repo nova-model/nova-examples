@@ -25,4 +25,4 @@ jobs:
       - name: Run mypy
         run: docker run --rm ${{ steps.build.outputs.imageid }} poetry run mypy .
       - name: Run tests
-        run: docker run --rm ${{ steps.build.outputs.imageid }} poetry run pytest test.py
+        run: docker run --rm ${{ steps.build.outputs.imageid }} poetry run pytest test_examples.py
