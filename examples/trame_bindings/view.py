@@ -19,7 +19,11 @@ class App(ThemedApp):
         binding = TrameBinding(self.state)
 
         self.view_model = create_vm(binding)
+        # If you forget to call connect, then the application will crash when you attempt to update the view.
         self.view_model.model_bind.connect("pydantic")
+        # Generally, we want to initialize the view state before creating the UI for ease of use. If initialization
+        # is expensive, then you can defer it. In this case, you must handle the view state potentially being
+        # uninitialized in the UI via v_if statements.
         self.view_model.update_view()
 
         self.create_ui()

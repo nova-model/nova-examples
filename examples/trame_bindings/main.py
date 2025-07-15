@@ -1,4 +1,4 @@
-"""Test running all examples."""
+"""Runs the Trame bindings example."""
 
 from examples.trame_bindings.view import App
 
