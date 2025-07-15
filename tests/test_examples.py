@@ -33,9 +33,10 @@ def test_example(input_directory: str) -> None:
     server_proc = Process(target=partial(run_server, input_directory))
     server_proc.start()
 
-    sleep(1)
+    sleep(5)
 
-    response = get("http://localhost:8080/index.html")
-    assert response.status_code == 200
-
-    server_proc.terminate()
+    try:
+        response = get("http://localhost:8080/index.html")
+        assert response.status_code == 200
+    finally:
+        server_proc.terminate()
