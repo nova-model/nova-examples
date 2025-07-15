@@ -1,0 +1,28 @@
+name: ci
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Build
+        uses: docker/build-push-action@v6
+        id: build
+        with:
+          file: tests/Dockerfile
+          load: true
+      - name: Run ruff check
+        run: docker run --rm ${{ steps.build.outputs.imageid }} poetry run ruff check
+      - name: Run format check
+        run: docker run --rm ${{ steps.build.outputs.imageid }} poetry run ruff format --check
+      - name: Run mypy
+        run: docker run --rm ${{ steps.build.outputs.imageid }} poetry run mypy .
+      - name: Run tests
+        run: docker run --rm ${{ steps.build.outputs.imageid }} poetry run pytest test.py

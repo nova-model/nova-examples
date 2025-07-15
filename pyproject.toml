@@ -1,0 +1,71 @@
+[tool.poetry]
+name = "nova-examples"
+version = "0.1.0"
+description = "NOVA Examples"
+authors = []
+license = "MIT"
+keywords = ["NDIP", "NOVA", "python"]
+
+packages = [
+  { include = "examples" }
+]
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+nova-mvvm = "*"
+nova-trame = "*"
+mypy = "*"
+pre-commit = ">=2.20.0"
+pytest = "*"
+requests = "*"
+ruff = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test*.py"]
+norecursedirs = [".git", "tmp*", "_tmp*", "__pycache__"]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "N",  # PEP8 naming convetions
+    "D"  # pydocstyle
+]
+ignore = [
+    "C901",  # too complex
+    "D102", # Missing docstring in public function
+    "D103", # Missing docstring in public method
+    "D401"  # imperative mood
+
+]
+
+[tool.ruff.lint.extend-per-file-ignores]
+'__init__.py' = ['D104'] # Missing docstring in public package
+
+
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.mypy]
+ignore_missing_imports = false
+check_untyped_defs = true
+disallow_untyped_defs = true
+ignore_errors = true
+disable_error_code = ["import-untyped"]
+# You can exclude files with the following (ONLY WHEN NECESSARY)
+# exclude = ["path/to/file"]
