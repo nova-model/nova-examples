@@ -1,6 +1,6 @@
-"""Runs the Trame bindings example."""
+"""Runs the Pydantic form example."""
 
-from examples.trame_bindings.view import App
+from examples.pydantic_form.view import App
 
 
 def main() -> None:

@@ -18,9 +18,8 @@ We use the MVVM framework for NOVA applications. With this in mind, each example
 1. view.py - Sets up a Trame GUI for the example.
 2. model.py - Sets up a Pydantic model and any business logic needed by the application.
 3. view_model.py - Sets up a view model that binds the model and view.
-4. mvvm_factory.py - Entrypoint for creating the model and view model.
-5. main.py - Runs the Trame GUI.
+4. main.py - Entrypoint for the Trame GUI.
 
 ## List of Examples
 
-1. [Binding Trame parameters](examples/trame_bindings)
+1. [Creating a form for a Pydantic model](examples/pydantic_form)
