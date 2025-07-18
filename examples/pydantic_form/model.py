@@ -4,18 +4,10 @@ from pydantic import BaseModel, Field, computed_field, field_validator
 
 
 class FormData(BaseModel):
-    """Pydantic model."""
+    """Pydantic model for the form data."""
 
     user_name: str = Field(default="", title="User Name")
     domain_name: str = Field(default="", title="Domain Name")
-    submitted: bool = Field(default=False)
-
-    @computed_field
-    @property
-    def submit_disabled(self) -> bool:
-        if "@" not in self.email:
-            return True
-        return False
 
     @computed_field
     @property
@@ -38,9 +30,3 @@ class Model:
 
     def __init__(self) -> None:
         self.form = FormData()
-
-    def submit(self) -> None:
-        self.form.submitted = True
-
-    def unsubmit(self) -> None:
-        self.form.submitted = False
