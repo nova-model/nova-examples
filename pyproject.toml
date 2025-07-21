@@ -20,6 +20,7 @@ pre-commit = ">=2.20.0"
 pytest = "*"
 requests = "*"
 ruff = "*"
+trame-code = "*"
 
 [build-system]
 requires = ["poetry-core"]

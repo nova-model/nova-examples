@@ -5,6 +5,7 @@ This repository contains examples of how to build application functionalities in
 ## List of Examples
 
 1. [Creating a form for a Pydantic model](examples/pydantic_form)
+2. [Create a JSON editor for a Pydantic model](examples/pydantic_monaco)
 
 ## Running Examples
 
