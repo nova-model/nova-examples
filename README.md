@@ -6,6 +6,9 @@ This repository contains examples of how to build application functionalities in
 
 1. [Creating a form for a Pydantic model](examples/pydantic_form)
 2. [Create a JSON editor for a Pydantic model](examples/pydantic_monaco)
+3. [Working with Plotly](examples/plotly)
+4. [Working with Matplotlib](examples/matplotlib)
+5. [Synchronizing changes between tabs](examples/multitab)
 
 ## Running Examples
 
