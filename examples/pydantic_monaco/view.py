@@ -36,7 +36,7 @@ class App(ThemedApp):
                         # If a component doesn't support the v_model parameter, as with the Monaco editor, then we can
                         # set the initial value and listen to the events manually.
                         code.Editor(
-                            model_value=("JSON.stringify(data, null, 2)",),
+                            model_value=("data",),
                             classes="h-75",
                             language="json",
                             theme="vs-dark",

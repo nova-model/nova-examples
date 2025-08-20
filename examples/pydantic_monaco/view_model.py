@@ -21,7 +21,7 @@ class ViewModel:
         self.model = model
         self.view_state = FormState()
 
-        self.form_data_bind = binding.new_bind(self.model.form)
+        self.form_data_bind = binding.new_bind()
         self.form_state_bind = binding.new_bind(self.view_state)
 
     def on_input(self, json_data: str) -> None:
@@ -45,7 +45,7 @@ class ViewModel:
 
     def update_form_data(self) -> None:
         # This will fail if you haven't called connect on the binding!
-        self.form_data_bind.update_in_view(self.model.form)
+        self.form_data_bind.update_in_view(self.model.form.model_dump_json(indent=2))
 
     def update_form_state(self) -> None:
         # This will fail if you haven't called connect on the binding!
