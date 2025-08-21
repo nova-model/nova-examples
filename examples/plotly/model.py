@@ -1,4 +1,4 @@
-"""Model implementation for Matplotlib example."""
+"""Model implementation for Plotly example."""
 
 from enum import Enum
 
@@ -21,18 +21,19 @@ class PlotData(BaseModel):
 
 
 class Model:
-    """Model implementation for Matplotlib example."""
+    """Model implementation for Plotly example."""
 
     def __init__(self) -> None:
         self.plot_data = PlotData()
 
     def get_data(self) -> np.ndarray:
-        data = np.radians(np.mod(np.arange(self.plot_data.data_points), 360))
+        domain = np.arange(self.plot_data.data_points)
+        data = np.radians(np.mod(domain, 360))
 
         match self.plot_data.function:
             case FunctionOptions.cosine:
-                return np.cos(data)
+                return domain, np.cos(data)
             case FunctionOptions.sine:
-                return np.sin(data)
+                return domain, np.sin(data)
 
-        return data
+        return domain, data

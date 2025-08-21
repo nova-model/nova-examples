@@ -1,4 +1,4 @@
-"""View for Pydantic form example."""
+"""View for Pydantic/Monaco example."""
 
 from nova.mvvm.trame_binding import TrameBinding
 from nova.trame import ThemedApp
