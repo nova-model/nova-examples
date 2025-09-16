@@ -8,7 +8,7 @@ This repository contains examples of how to build application functionalities in
 2. [Create a JSON editor for a Pydantic model](examples/pydantic_monaco)
 3. [Working with Plotly](examples/plotly)
 4. [Working with Matplotlib](examples/matplotlib)
-5. [Synchronizing changes between tabs](examples/multitab)
+5. [Setting up multiple tabs with cross-communication](examples/multitab)
 
 ## Running Examples
 
@@ -21,9 +21,9 @@ poetry run python examples/{example_folder}/main.py
 
 ## Example Structure
 
-We use the MVVM framework for NOVA applications. With this in mind, each example is broken down into the following files:
+We use the MVVM framework for NOVA applications. With this in mind, each example is broken down into the following sections:
 
-1. view.py - Sets up a Trame GUI for the example.
-2. model.py - Sets up a Pydantic model and any business logic needed by the application.
-3. view_model.py - Sets up a view model that binds the model and view.
+1. view - Sets up a Trame GUI for the example.
+2. model - Sets up a Pydantic model and any business logic needed by the application.
+3. view_model - Sets up a view model that binds the model and view.
 4. main.py - Entrypoint for the Trame GUI.
