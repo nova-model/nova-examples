@@ -35,8 +35,9 @@ class App(ThemedApp):
                 with vuetify.VCard(classes="mx-auto my-4 pa-1", max_width=600):
                     with VBoxLayout(height=400):
                         # You must set the ONCAT_CLIENT_ID and ONCAT_CLIENT_SECRET environment variables for this to
-                        # work. If you don't know how to set them, then please visit https://oncat.ornl.gov/ and review
-                        # the documentation or reach out to ONCat support for assistance.
+                        # work locally. If you don't know how to set them, then please visit https://oncat.ornl.gov/ and
+                        # review the documentation or reach out to ONCat support for assistance. When this runs in
+                        # production, we will set the environment for you automatically.
                         NeutronDataSelector(
                             v_model="data.selected_files",
                             base_paths=["/HFIR", "/SNS"],
