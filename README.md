@@ -10,6 +10,7 @@ This repository contains examples of how to build application functionalities in
 4. [Conditionally disabling elements](examples/conditional_disabling)
 5. [Changing Pydantic rules based on user input](examples/dynamic_pydantic_rules)
 6. [Complex Pydantic rules](examples/complex_pydantic_rules)
+7. [Using the NeutronDataSelector](examples/data_selector)
 7. [Working with Plotly](examples/plotly)
 8. [Working with Matplotlib](examples/matplotlib)
 9. [Synchronizing changes between tabs](examples/multitab)
