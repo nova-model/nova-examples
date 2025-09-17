@@ -17,6 +17,7 @@ class ViewModel:
         self.form_data_bind = binding.new_bind(self.model.form, callback_after_update=self.send_cleaned_text_to_view)
 
     def send_cleaned_text_to_view(self, results: Dict[str, Any]) -> None:
+        # This is necessary to send the cleaned text to the view since it's updated programmatically.
         self.form_data_bind.update_in_view(self.model.form)
 
     def update_form_data(self) -> None:
