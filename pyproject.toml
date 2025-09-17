@@ -21,6 +21,7 @@ pytest = "*"
 requests = "*"
 ruff = "*"
 trame-code = "*"
+nltk = "*"
 
 [build-system]
 requires = ["poetry-core"]
