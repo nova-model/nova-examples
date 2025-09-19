@@ -30,6 +30,10 @@ def run_server(input_directory: str) -> None:
 
 @pytest.mark.parametrize("input_directory", examples_list)
 def test_example(input_directory: str) -> None:
+    # The ONCat example can't run in GitHub CI, so we exclude it from tests.
+    if input_directory == "oncat":
+        return
+
     server_proc = Process(target=partial(run_server, input_directory))
     server_proc.start()
 
