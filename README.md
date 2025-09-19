@@ -10,11 +10,14 @@ This repository contains examples of how to build application functionalities in
 4. [Conditionally disabling elements](examples/conditional_disabling)
 5. [Changing Pydantic rules based on user input](examples/dynamic_pydantic_rules)
 6. [Complex Pydantic rules](examples/complex_pydantic_rules)
-7. [Using the NeutronDataSelector](examples/data_selector)
-8. [Working with ONCat](examples/oncat)
-9. [Working with Plotly](examples/plotly)
-10. [Working with Matplotlib](examples/matplotlib)
-11. [Synchronizing changes between tabs](examples/multitab)
+7. [Using datafiles from the Analysis Cluster](examples/data_selector)
+8. [Selecting datafiles from ONCat](examples/oncat)
+9. [Running an NDIP tool](examples/run_ndip_tool)
+10. [Running an NDIP workflow](examples/run_ndip_workflow)
+11. [Working with Plotly](examples/plotly)
+12. [Working with Matplotlib](examples/matplotlib)
+13. [Working with VTK](examples/vtk)
+14. [Synchronizing changes between tabs](examples/multitab)
 
 ## Running Examples
 
