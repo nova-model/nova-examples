@@ -23,6 +23,7 @@ requests = "*"
 ruff = "*"
 trame-code = "*"
 nltk = "*"
+pillow = "^11.3.0"
 
 [build-system]
 requires = ["poetry-core"]

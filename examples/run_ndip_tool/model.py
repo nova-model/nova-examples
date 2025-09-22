@@ -1,10 +1,13 @@
 """Model implementation for NDIP tool example."""
 
 from enum import Enum
-from typing import Tuple
+from io import BytesIO
+from typing import List, Tuple
 
 from nova.galaxy import Parameters, Tool
 from nova.galaxy.interfaces import BasicTool
+from PIL import Image
+from PIL.ImageStat import Stat
 from pydantic import BaseModel, Field
 
 
@@ -23,11 +26,21 @@ class FormData(BaseModel):
     fractal_type: FractalOptions = Field(default=FractalOptions.mandelbrot, title="Type")
 
 
+class ImageStatistics(BaseModel):
+    """Pydantic model for holding image statistics."""
+
+    count: List[int] = Field(default=[])
+    extrema: List[Tuple[int, int]] = Field(default=[])
+    mean: List[float] = Field(default=[])
+    median: List[int] = Field(default=[])
+
+
 class Model:
     """Model implementation for NDIP tool example."""
 
     def __init__(self) -> None:
         self.form = FormData()
+        self.stats = ImageStatistics()
 
 
 class FractalsTool(BasicTool):
@@ -47,6 +60,17 @@ class FractalsTool(BasicTool):
 
         return self.tool, tool_params
 
-    def get_results(self) -> None:
-        # TODO: add some processing of the results.
+    def compute_stats(self) -> None:
+        outputs = self.tool.get_results()
+        output = outputs.get_dataset("output").get_content()
+
+        img = Image.open(BytesIO(output))
+        stat = Stat(img)
+
+        self.model.stats.count = stat.count
+        self.model.stats.extrema = stat.extrema
+        self.model.stats.mean = [round(mean, 3) for mean in stat.mean]
+        self.model.stats.median = stat.median
+
+    def get_results(self, tool: Tool) -> None:
         pass
