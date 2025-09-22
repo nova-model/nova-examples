@@ -15,7 +15,7 @@ class ViewModel:
         # You must set these environment variables for this example to run. Please see the tutorial at
         # https://nova.ornl.gov/tutorial for instructions on how to set these environment variables. Note that when a
         # NOVA application is deployed to NDIP, we will automatically set these environment variables for you.
-        galaxy_url = os.environ.get("GALAXY_URL", None)
+        galaxy_url = os.environ.get("GALAXY_URL", "https://calvera-test.ornl.gov")
         galaxy_api_key = os.environ.get("GALAXY_API_KEY", None)
         if not galaxy_url or not galaxy_api_key:
             raise EnvironmentError("GALAXY_URL and GALAXY_API_KEY must be set to run this example.")
