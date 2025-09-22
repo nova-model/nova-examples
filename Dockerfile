@@ -3,7 +3,8 @@ FROM python:3.13-slim
 RUN apt update && apt install -y \
     curl \
     g++ \
-    libx11-dev
+    libx11-dev \
+    libxrender1
 
 ENV POETRY_HOME=/poetry
 ENV PATH=/poetry/bin:$PATH
