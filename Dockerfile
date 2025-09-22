@@ -2,7 +2,8 @@ FROM python:3.13-slim
 
 RUN apt update && apt install -y \
     curl \
-    g++
+    g++ \
+    libx11-dev
 
 ENV POETRY_HOME=/poetry
 ENV PATH=/poetry/bin:$PATH
