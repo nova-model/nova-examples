@@ -3,6 +3,7 @@ FROM python:3.13-slim
 RUN apt update && apt install -y \
     curl \
     g++ \
+    libosmesa6-dev \
     libx11-dev \
     libxrender1
 
