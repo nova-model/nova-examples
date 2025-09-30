@@ -1,4 +1,4 @@
-"""Model implementation for NDIP tool example."""
+"""Model implementation for Galaxy tool example."""
 
 from enum import Enum
 from io import BytesIO
@@ -36,7 +36,7 @@ class ImageStatistics(BaseModel):
 
 
 class Model:
-    """Model implementation for NDIP tool example."""
+    """Model implementation for Galaxy tool example."""
 
     def __init__(self) -> None:
         self.form = FormData()

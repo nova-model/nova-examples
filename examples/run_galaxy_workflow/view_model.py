@@ -1,4 +1,4 @@
-"""View model implementation for NDIP workflow example."""
+"""View model implementation for Galaxy workflow example."""
 
 import os
 from functools import partial
@@ -19,12 +19,12 @@ class ViewState(BaseModel):
 
 
 class ViewModel:
-    """View model implementation for NDIP workflow example."""
+    """View model implementation for Galaxy workflow example."""
 
     def __init__(self, model: Model, binding: BindingInterface) -> None:
         # You must set these environment variables for this example to run. Please see the tutorial at
         # https://nova.ornl.gov/tutorial for instructions on how to set these environment variables. Note that when a
-        # NOVA application is deployed to NDIP, we will automatically set these environment variables for you.
+        # NOVA application is deployed to Galaxy, we will automatically set these environment variables for you.
         self.galaxy_url = os.environ.get("GALAXY_URL", "https://calvera-test.ornl.gov")
         self.galaxy_api_key = os.environ.get("GALAXY_API_KEY", None)
         if not self.galaxy_url or not self.galaxy_api_key:
@@ -39,7 +39,7 @@ class ViewModel:
         self.view_state_bind = binding.new_bind(self.view_state)
 
     def on_completion(self) -> None:
-        # Here, we can fetch and process outputs similar to the NDIP tool example. See the TOPAZ Reduction GUI for a
+        # Here, we can fetch and process outputs similar to the Galaxy tool example. See the TOPAZ Reduction GUI for a
         # complete example including results processing for workflows.
         # https://code.ornl.gov/ndip/tool-sources/single-crystal-diffraction/topaz-data-reduction
         self.view_state.complete = True

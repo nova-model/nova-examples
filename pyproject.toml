@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "NOVA Examples"
 authors = []
 license = "MIT"
-keywords = ["NDIP", "NOVA", "python"]
+keywords = ["Galaxy", "NOVA", "python"]
 
 packages = [
   { include = "examples" }

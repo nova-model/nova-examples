@@ -1,6 +1,6 @@
-"""Runs the NDIP tool example."""
+"""Runs the Galaxy workflow example."""
 
-from examples.run_ndip_tool.view import App
+from examples.run_galaxy_workflow.view import App
 
 
 def main() -> None:

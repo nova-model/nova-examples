@@ -1,4 +1,4 @@
-"""View for NDIP workflow example."""
+"""View for Galaxy workflow example."""
 
 from nova.mvvm.trame_binding import TrameBinding
 from nova.trame import ThemedApp
@@ -12,7 +12,7 @@ from .view_model import ViewModel
 
 
 class App(ThemedApp):
-    """View for NDIP workflow example."""
+    """View for Galaxy workflow example."""
 
     def __init__(self) -> None:
         super().__init__()

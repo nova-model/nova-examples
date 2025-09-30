@@ -1,4 +1,4 @@
-"""Model implementation for NDIP workflow example."""
+"""Model implementation for Galaxy workflow example."""
 
 from enum import Enum
 from typing import Callable
@@ -32,7 +32,7 @@ class FormData(BaseModel):
 
 
 class Model:
-    """Model implementation for NDIP workflow example."""
+    """Model implementation for Galaxy workflow example."""
 
     def __init__(self) -> None:
         self.form = FormData()

@@ -1,4 +1,4 @@
-"""View for NDIP tool example."""
+"""View for Galaxy tool example."""
 
 from nova.mvvm.trame_binding import TrameBinding
 from nova.trame import ThemedApp
@@ -12,7 +12,7 @@ from .view_model import ViewModel
 
 
 class App(ThemedApp):
-    """View for NDIP tool example."""
+    """View for Galaxy tool example."""
 
     def __init__(self) -> None:
         super().__init__()
