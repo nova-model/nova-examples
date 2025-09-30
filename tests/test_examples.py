@@ -6,21 +6,37 @@ from functools import partial
 from multiprocessing import Process
 from pathlib import Path
 from time import sleep
+from typing import List
 
 import pytest
 from requests import get
 
-base_path = Path("examples")
-examples_list = []
-try:
-    for example in sorted(os.listdir(base_path)):
-        if example.startswith(".") or example.startswith("_"):
-            continue
+EXAMPLES_DIRECTORY = Path("examples")
+ORNL_SUBDIRECTORY = Path("ornl")
 
-        if os.path.isdir(base_path / example):
-            examples_list.append(example)
-except OSError:
-    pass
+
+def get_examples(directory: Path) -> List[str]:
+    found_examples = []
+
+    try:
+        for example in sorted(os.listdir(directory)):
+            if example.startswith(".") or example.startswith("_"):
+                continue
+
+            if example.startswith(str(ORNL_SUBDIRECTORY)):
+                if not os.environ.get("INCLUDE_ORNL_TESTS", False):
+                    continue
+
+                found_examples.extend(get_examples(directory / ORNL_SUBDIRECTORY))
+            elif os.path.isdir(directory / example):
+                found_examples.append(example)
+    except OSError:
+        pass
+
+    return found_examples
+
+
+examples_list = get_examples(EXAMPLES_DIRECTORY)
 
 
 def run_server(input_directory: str) -> None:
@@ -30,10 +46,6 @@ def run_server(input_directory: str) -> None:
 
 @pytest.mark.parametrize("input_directory", examples_list)
 def test_example(input_directory: str) -> None:
-    # The ONCat and NDIP examples can't run in GitHub CI, so we exclude them from the tests.
-    if input_directory == "oncat" or "ndip" in input_directory:
-        return
-
     server_proc = Process(target=partial(run_server, input_directory))
     server_proc.start()
 

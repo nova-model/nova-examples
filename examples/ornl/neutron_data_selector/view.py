@@ -1,10 +1,8 @@
-"""View for data selector example."""
-
-import os
+"""View for neutron data selector example."""
 
 from nova.mvvm.trame_binding import TrameBinding
 from nova.trame import ThemedApp
-from nova.trame.view.components import DataSelector
+from nova.trame.view.components.ornl import NeutronDataSelector
 from nova.trame.view.layouts import VBoxLayout
 from trame.widgets import html
 from trame.widgets import vuetify3 as vuetify
@@ -14,7 +12,7 @@ from .view_model import ViewModel
 
 
 class App(ThemedApp):
-    """View for data selector example."""
+    """View for neutron data selector example."""
 
     def __init__(self) -> None:
         super().__init__()
@@ -36,13 +34,16 @@ class App(ThemedApp):
             with layout.content:
                 with vuetify.VCard(classes="mx-auto my-4 pa-1", max_width=600):
                     with VBoxLayout(height=400):
-                        # Please note that this is a dangerous operation. You should ensure that you restrict this
-                        # component to only expose files that are strictly necessary to making your application
-                        # functional.
-                        DataSelector(
+                        # Please note that this example will not work locally if /HFIR and /SNS don't exist on your
+                        # development machine. You can either simulate or try to mount them depending on your
+                        # circumstances.
+                        NeutronDataSelector(
                             v_model="data.selected_files",
-                            directory=os.environ.get("HOME", "/"),
+                            base_paths=["/HFIR", "/SNS"],
                             classes="mb-1",
+                            # You can uncomment the below lines to restrict data selection to a specific instrument.
+                            # facility="SNS",
+                            # instrument="TOPAZ",
                         )
                     html.Span("You have selected {{ data.selected_files.length }} files.")
 

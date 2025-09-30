@@ -1,6 +1,6 @@
-"""Runs the ONCat example."""
+"""Runs the neutron data selector example."""
 
-from examples.oncat.view import App
+from examples.ornl.neutron_data_selector.view import App
 
 
 def main() -> None:

@@ -10,14 +10,18 @@ This repository contains examples of how to build application functionalities in
 4. [Conditionally disabling elements](examples/conditional_disabling)
 5. [Changing Pydantic rules based on user input](examples/dynamic_pydantic_rules)
 6. [Complex Pydantic rules](examples/complex_pydantic_rules)
-7. [Using datafiles from the Analysis Cluster](examples/data_selector)
-8. [Selecting datafiles from ONCat](examples/oncat)
-9. [Running an NDIP tool](examples/run_ndip_tool)
-10. [Running an NDIP workflow](examples/run_ndip_workflow)
-11. [Working with Plotly](examples/plotly)
-12. [Working with Matplotlib](examples/matplotlib)
-13. [Working with VTK](examples/vtk)
-14. [Synchronizing changes between tabs](examples/multitab)
+7. [Selecting datafiles from the server](examples/data_selector)
+8. [Running a Galaxy tool](examples/run_galaxy_tool)
+9. [Running a Galaxy workflow](examples/run_galaxy_workflow)
+10. [Working with Plotly](examples/plotly)
+11. [Working with Matplotlib](examples/matplotlib)
+12. [Working with VTK](examples/vtk)
+13. [Synchronizing changes between tabs](examples/multitab)
+
+We also provide examples that take advantage of ORNL resources:
+
+1. [Selecting datafiles from the Analysis Cluster](examples/ornl/neutron_data_selector)
+2. [Selecting datafiles from ONCat](examples/ornl/oncat)
 
 ## Running Examples
 
@@ -27,6 +31,17 @@ If you want to run the examples, then you will need to install [Poetry](https://
 poetry install
 poetry run python examples/{example_folder}/main.py
 ```
+
+## Running Tests
+
+This repo includes an automated test to ensure that each example runs:
+
+```bash
+poetry install
+poetry run pytest
+```
+
+You can set the environment variable `INCLUDE_ORNL_TESTS=1` if you want to test the examples that rely on specific ORNL resources. Note that you will need to run them from a location that has access to these resources.
 
 ## Example Structure
 
