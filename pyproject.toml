@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "NOVA Examples"
 authors = []
 license = "MIT"
-keywords = ["NDIP", "NOVA", "python"]
+keywords = ["Galaxy", "NOVA", "python"]
 
 packages = [
   { include = "examples" }
@@ -13,6 +13,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.10"
+nova-galaxy = "*"
 nova-mvvm = "*"
 nova-trame = "*"
 mypy = "*"
@@ -21,6 +22,10 @@ pytest = "*"
 requests = "*"
 ruff = "*"
 trame-code = "*"
+nltk = "*"
+pillow = "^11.3.0"
+trame-vtk = "^2.9.1"
+vtk = "^9.5.2"
 
 [build-system]
 requires = ["poetry-core"]
