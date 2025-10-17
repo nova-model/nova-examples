@@ -31,16 +31,13 @@ class App(ThemedApp):
     def create_ui(self) -> None:
         with super().create_ui() as layout:
             with layout.content:
-                with vuetify.VCard(classes="mx-auto my-4 pa-1", max_width=600):
-                    with HBoxLayout(classes="mb-2", gap="0.5em", valign="center"):
-                        InputField(v_model="data.input_path")
-                        with vuetify.VBtn(
-                            disabled=("state.running || state.errors",), click=self.view_model.run_workflow
-                        ):
-                            vuetify.VProgressCircular(v_if="state.running", indeterminate=True, size=16)
-                            html.Span("Run Workflow", v_else=True)
+                with HBoxLayout(classes="mb-2", gap="0.5em", valign="center"):
+                    InputField(v_model="data.input_path")
+                    with vuetify.VBtn(disabled=("state.running || state.errors",), click=self.view_model.run_workflow):
+                        vuetify.VProgressCircular(v_if="state.running", indeterminate=True, size=16)
+                        html.Span("Run Workflow", v_else=True)
 
-                    html.Span("Workflow Completed!", v_if="data.complete")
+                html.Span("Workflow Completed!", v_if="data.complete")
 
     def create_vm(self) -> None:
         binding = TrameBinding(self.state)

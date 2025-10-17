@@ -5,7 +5,6 @@ from nova.mvvm.trame_binding import TrameBinding
 from nova.trame import ThemedApp
 from nova.trame.view.layouts import VBoxLayout
 from trame.widgets import vtk
-from trame.widgets import vuetify3 as vuetify
 
 # VTK factory initialization
 from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
@@ -43,13 +42,10 @@ class App(ThemedApp):
     def create_ui(self) -> None:
         with super().create_ui() as layout:
             with layout.content:
-                with vuetify.VCard(
-                    classes="d-flex flex-column mx-auto my-4", max_width=1200, style="height: calc(100vh - 120px);"
-                ):
-                    with VBoxLayout(height="100%", gap="0.5em"):
-                        # Choosing vtkRemoteView will enforce server-side rendering. We strongly recommend this for
-                        # anything non-trivial in size.
-                        vtk.VtkRemoteView(self.render_window)
+                with VBoxLayout(gap="0.5em", stretch=True):
+                    # Choosing vtkRemoteView will enforce server-side rendering. We strongly recommend this for
+                    # anything non-trivial in size.
+                    vtk.VtkRemoteView(self.render_window)
 
     def create_vm(self) -> None:
         binding = TrameBinding(self.state)

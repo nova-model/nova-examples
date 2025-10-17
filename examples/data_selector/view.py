@@ -7,7 +7,6 @@ from nova.trame import ThemedApp
 from nova.trame.view.components import DataSelector
 from nova.trame.view.layouts import VBoxLayout
 from trame.widgets import html
-from trame.widgets import vuetify3 as vuetify
 
 from .model import Model
 from .view_model import ViewModel
@@ -34,17 +33,16 @@ class App(ThemedApp):
 
         with super().create_ui() as layout:
             with layout.content:
-                with vuetify.VCard(classes="mx-auto my-4 pa-1", max_width=600):
-                    with VBoxLayout(height=400):
-                        # Please note that this is a dangerous operation. You should ensure that you restrict this
-                        # component to only expose files that are strictly necessary to making your application
-                        # functional.
-                        DataSelector(
-                            v_model="data.selected_files",
-                            directory=os.environ.get("HOME", "/"),
-                            classes="mb-1",
-                        )
-                    html.Span("You have selected {{ data.selected_files.length }} files.")
+                with VBoxLayout(stretch=True):
+                    # Please note that this is a dangerous operation. You should ensure that you restrict this
+                    # component to only expose files that are strictly necessary to making your application
+                    # functional.
+                    DataSelector(
+                        v_model="data.selected_files",
+                        directory=os.environ.get("HOME", "/"),
+                        classes="mb-1",
+                    )
+                html.Span("You have selected {{ data.selected_files.length }} files.")
 
     def create_vm(self) -> None:
         binding = TrameBinding(self.state)

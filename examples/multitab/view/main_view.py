@@ -35,12 +35,8 @@ class App(ThemedApp):
                     vuetify.VTab("Statistics", value=1)
 
             with layout.content:
-                with vuetify.VCard(classes="d-flex flex-column", style="height: calc(100vh - 150px);"):
-                    with vuetify.VWindow(v_model="view_state.active_tab"):
-                        with vuetify.VWindowItem(value=0):
-                            InputTab()
-                        with vuetify.VWindowItem(value=1):
-                            StatsTab()
+                InputTab(v_if="view_state.active_tab == 0")
+                StatsTab(v_if="view_state.active_tab == 1")
 
     def create_vm(self) -> None:
         binding = TrameBinding(self.state)
