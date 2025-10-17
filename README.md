@@ -17,6 +17,7 @@ This repository contains examples of how to build application functionalities in
 11. [Working with Matplotlib](examples/matplotlib)
 12. [Working with VTK](examples/vtk)
 13. [Synchronizing changes between tabs](examples/multitab)
+14. [Manually syncing the view and model](examples/trame_state)
 
 We also provide examples that take advantage of ORNL resources:
 
