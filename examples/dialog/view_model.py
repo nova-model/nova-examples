@@ -1,4 +1,4 @@
-"""View model implementation for Plotly example."""
+"""View model implementation for dialog example."""
 
 from nova.mvvm.interface import BindingInterface
 from pydantic import BaseModel, Field
@@ -11,7 +11,7 @@ class ViewState(BaseModel):
 
 
 class ViewModel:
-    """View model implementation for Plotly example."""
+    """View model implementation for dialog example."""
 
     def __init__(self, binding: BindingInterface) -> None:
         self.view_state = ViewState()

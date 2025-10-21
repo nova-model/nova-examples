@@ -1,6 +1,6 @@
-"""Runs the Trame state example."""
+"""Runs the dialog example."""
 
-from examples.trame_state.view import App
+from examples.dialog.view import App
 
 
 def main() -> None:
