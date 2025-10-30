@@ -2,6 +2,7 @@
 
 from nova.mvvm.trame_binding import TrameBinding
 from nova.trame import ThemedApp
+from trame.widgets import client
 from trame.widgets import vuetify3 as vuetify
 
 from ..model import InputModel, StatsModel
@@ -28,19 +29,14 @@ class App(ThemedApp):
     def create_ui(self) -> None:
         with super().create_ui() as layout:
             with layout.pre_content:
-                with vuetify.VTabs(
-                    v_model="view_state.active_tab", classes="pl-8", update_modelValue="flushState('view_state')"
-                ):
-                    vuetify.VTab("Input", value=0)
-                    vuetify.VTab("Statistics", value=1)
+                with client.DeepReactive("view_state"):
+                    with vuetify.VTabs(v_model="view_state.active_tab", classes="pl-8"):
+                        vuetify.VTab("Input", value=0)
+                        vuetify.VTab("Statistics", value=1)
 
             with layout.content:
-                with vuetify.VCard(classes="d-flex flex-column", style="height: calc(100vh - 150px);"):
-                    with vuetify.VWindow(v_model="view_state.active_tab"):
-                        with vuetify.VWindowItem(value=0):
-                            InputTab()
-                        with vuetify.VWindowItem(value=1):
-                            StatsTab()
+                InputTab(v_if="view_state.active_tab == 0")
+                StatsTab(v_if="view_state.active_tab == 1")
 
     def create_vm(self) -> None:
         binding = TrameBinding(self.state)

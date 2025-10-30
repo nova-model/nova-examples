@@ -30,26 +30,25 @@ class App(ThemedApp):
     def create_ui(self) -> None:
         with super().create_ui() as layout:
             with layout.content:
-                with vuetify.VCard(classes="mx-auto my-4", max_width=600):
-                    with GridLayout(columns=2, classes="mb-2", gap="0.5em"):
-                        InputField(v_model="data.email_address")
-                        InputField(v_model="data.full_name")
+                with GridLayout(columns=2, classes="mb-2", gap="0.5em"):
+                    InputField(v_model="data.email_address")
+                    InputField(v_model="data.full_name")
 
-                    with HBoxLayout(classes="mb-2", gap="0.5em", valign="center"):
-                        InputField(v_model="data.show_phone_field", type="checkbox")
+                with HBoxLayout(classes="mb-2", gap="0.5em", valign="center"):
+                    InputField(v_model="data.show_phone_field", type="checkbox")
 
-                        # Now, we can use show_phone_field to conditionally render the phone number field.
-                        InputField(v_if="data.show_phone_field", v_model="data.phone_number")
-                        # Following a v_if, we can use v_else_if and v_else.
-                        html.Span("{{ data.full_name }}'s phone number is hidden.", v_else_if="data.full_name")
-                        html.Span("Phone number is hidden.", v_else=True)
+                    # Now, we can use show_phone_field to conditionally render the phone number field.
+                    InputField(v_if="data.show_phone_field", v_model="data.phone_number")
+                    # Following a v_if, we can use v_else_if and v_else.
+                    html.Span("{{ data.full_name }}'s phone number is hidden.", v_else_if="data.full_name")
+                    html.Span("Phone number is hidden.", v_else=True)
 
-                    with VBoxLayout(gap="0.5em"):
-                        # We can also use v_show to conditionally render a field. Note that when using v_show, you won't
-                        # be able to use v_else_if or v_else afterwards. There is a deeper discussion of the differences
-                        # between v_if and v_show in the Vue.js documentation: https://vuejs.org/guide/essentials/conditional#v-if-vs-v-show.
-                        vuetify.VBtn("Toggle Comments Field", click=self.view_model.toggle_comments)
-                        InputField(v_show="data.show_comments_field", v_model="data.comments", type="textarea")
+                with VBoxLayout(gap="0.5em", stretch=True):
+                    # We can also use v_show to conditionally render a field. Note that when using v_show, you won't
+                    # be able to use v_else_if or v_else afterwards. There is a deeper discussion of the differences
+                    # between v_if and v_show in the Vue.js documentation: https://vuejs.org/guide/essentials/conditional#v-if-vs-v-show.
+                    vuetify.VBtn("Toggle Comments Field", click=self.view_model.toggle_comments)
+                    InputField(v_show="data.show_comments_field", v_model="data.comments", type="textarea")
 
     def create_vm(self) -> None:
         binding = TrameBinding(self.state)

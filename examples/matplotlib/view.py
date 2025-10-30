@@ -7,7 +7,6 @@ from nova.trame import ThemedApp
 from nova.trame.view.components import InputField
 from nova.trame.view.components.visualization import MatplotlibFigure
 from nova.trame.view.layouts import GridLayout, HBoxLayout
-from trame.widgets import vuetify3 as vuetify
 
 from .model import Model
 from .view_model import ViewModel
@@ -33,20 +32,15 @@ class App(ThemedApp):
     def create_ui(self) -> None:
         with super().create_ui() as layout:
             with layout.content:
-                with vuetify.VCard(
-                    classes="d-flex flex-column mx-auto my-4", max_width=1200, style="height: calc(100vh - 120px);"
-                ):
-                    with GridLayout(classes="mb-4", columns=2, gap="1em"):
-                        InputField("plot_data.data_points")
-                        InputField("plot_data.function", type="select")
+                with GridLayout(classes="mb-4", columns=2, gap="1em"):
+                    InputField("plot_data.data_points")
+                    InputField("plot_data.function", type="select")
 
-                    with HBoxLayout(classes="flex-1-0 overflow-hidden"):
-                        # Try increasing the number of data points to something very large and observe the drop in
-                        # performance. Then, set webagg to True and try again and see the difference. webagg is a
-                        # server-side rendering mode for Matplotlib.
-                        self.figure_view = MatplotlibFigure(
-                            classes="h-100 w-100", figure=self.view_model.get_updated_figure(), webagg=False
-                        )
+                with HBoxLayout(classes="overflow-hidden", stretch=True):
+                    # Try increasing the number of data points to something very large and observe the drop in
+                    # performance. Then, set webagg to True and try again and see the difference. webagg is a
+                    # server-side rendering mode for Matplotlib.
+                    self.figure_view = MatplotlibFigure(figure=self.view_model.get_updated_figure(), webagg=False)
 
     def create_vm(self) -> None:
         binding = TrameBinding(self.state)

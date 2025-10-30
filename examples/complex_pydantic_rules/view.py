@@ -4,7 +4,6 @@ from nova.mvvm.trame_binding import TrameBinding
 from nova.trame import ThemedApp
 from nova.trame.view.components import InputField
 from nova.trame.view.layouts import VBoxLayout
-from trame.widgets import vuetify3 as vuetify
 
 from .model import Model
 from .view_model import ViewModel
@@ -29,10 +28,9 @@ class App(ThemedApp):
     def create_ui(self) -> None:
         with super().create_ui() as layout:
             with layout.content:
-                with vuetify.VCard(classes="mx-auto my-4", max_width=600):
-                    with VBoxLayout(columns=3, gap="0.5em"):
-                        InputField(v_model="data.text", type="textarea")
-                        InputField(v_model="data.tokenized_text", readonly=True, type="textarea")
+                with VBoxLayout(gap="0.5em", stretch=True):
+                    InputField(v_model="data.text", type="textarea")
+                    InputField(v_model="data.tokenized_text", readonly=True, type="textarea")
 
     def create_vm(self) -> None:
         binding = TrameBinding(self.state)
