@@ -1594,13 +1594,13 @@ pyqt6 = ["pyqt6"]
 
 [[package]]
 name = "nova-trame"
-version = "1.0.1"
+version = "1.1.1"
 description = "A Python Package for injecting curated themes and custom components into Trame applications"
 optional = false
 python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "nova_trame-1.0.1-py3-none-any.whl", hash = "sha256:3ba9a8d0ba93ee2e2e0e21d0460733ac9316dec73d389e74b9de80c5ebb1c231"},
+    {file = "nova_trame-1.1.1-py3-none-any.whl", hash = "sha256:b462ea03b11610e7092b2018c495f34114e64bafd5a2ae483aa3b396545ea13d"},
 ]
 
 [package.dependencies]
