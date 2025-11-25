@@ -1,18 +1,20 @@
-[tool.poetry]
+[project]
 name = "nova-examples"
 version = "0.1.0"
 description = "NOVA Examples"
 authors = []
 license = "MIT"
 keywords = ["Galaxy", "NOVA", "python"]
+requires-python = ">=3.11,<3.14"
 
-packages = [
-  { include = "examples" }
-]
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-64"]
 
+[tool.pixi.dependencies]
 
-[tool.poetry.dependencies]
-python = "^3.10"
+[tool.pixi.pypi-dependencies]
+nova-examples = { path = ".", editable = true }
 nova-galaxy = "*"
 nova-mvvm = "*"
 nova-trame = "*"
@@ -23,20 +25,23 @@ requests = "*"
 ruff = "*"
 trame-code = "*"
 nltk = "*"
-pillow = "^11.3.0"
-trame-vtk = "^2.9.1"
-vtk = "^9.5.2"
+pillow = ">=11.3.0"
+trame-vtk = ">=2.9.1"
+vtk = ">=9.5.2"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
+[tool.hatch.build.targets.wheel]
+packages = ["examples"]
 
 [tool.pytest.ini_options]
 python_files = ["test*.py"]
 norecursedirs = [".git", "tmp*", "_tmp*", "__pycache__"]
 
 [tool.ruff]
+extend-exclude = [".pixi"]
 line-length = 120
 
 [tool.ruff.lint]

@@ -7,17 +7,17 @@ RUN apt update && apt install -y \
     libx11-dev \
     libxrender1
 
-ENV POETRY_HOME=/poetry
-ENV PATH=/poetry/bin:$PATH
-RUN curl -sSL https://install.python-poetry.org | python3 -
+RUN curl -fsSL https://pixi.sh/install.sh | sh
+ENV PATH="/root/.pixi/bin:${PATH}"
 
 RUN mkdir -p /opt/run/examples
 COPY examples/ /opt/run/examples/
 COPY tests/ /opt/run/
 COPY pyproject.toml /opt/run/pyproject.toml
-COPY poetry.lock /opt/run/poetry.lock
 
 WORKDIR /opt/run
-RUN poetry install
+RUN pixi install
+SHELL [ "pixi", "run" ]
+ENTRYPOINT [ "pixi", "run" ]
 
 CMD []
