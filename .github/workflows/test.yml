@@ -23,10 +23,10 @@ jobs:
           file: Dockerfile
           load: true
       - name: Run ruff check
-        run: docker run --rm ${{ steps.build.outputs.imageid }} poetry run ruff check
+        run: docker run --rm ${{ steps.build.outputs.imageid }} ruff check
       - name: Run format check
-        run: docker run --rm ${{ steps.build.outputs.imageid }} poetry run ruff format --check
+        run: docker run --rm ${{ steps.build.outputs.imageid }} ruff format --check
       - name: Run mypy
-        run: docker run --rm ${{ steps.build.outputs.imageid }} poetry run mypy .
+        run: docker run --rm ${{ steps.build.outputs.imageid }} mypy .
       - name: Run tests
-        run: docker run --rm -e GALAXY_URL=${{ env.GALAXY_URL }} -e GALAXY_API_KEY=${{ env.GALAXY_API_KEY }} ${{ steps.build.outputs.imageid }} poetry run pytest test_examples.py
+        run: docker run --rm -e GALAXY_URL=${{ env.GALAXY_URL }} -e GALAXY_API_KEY=${{ env.GALAXY_API_KEY }} ${{ steps.build.outputs.imageid }} pytest test_examples.py

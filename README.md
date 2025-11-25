@@ -27,11 +27,11 @@ We also provide examples that take advantage of ORNL resources:
 
 ## Running Examples
 
-If you want to run the examples, then you will need to install [Poetry](https://python-poetry.org/). Once done, run the following to run an example.
+If you want to run the examples, then you will need to install [Pixi](https://pixi.sh/latest/). Once done, run the following to run an example.
 
 ```bash
-poetry install
-poetry run python examples/{example_folder}/main.py
+pixi install
+pixi run python -m examples.{example_folder}
 ```
 
 ## Running Tests
@@ -39,8 +39,7 @@ poetry run python examples/{example_folder}/main.py
 This repo includes an automated test to ensure that each example runs:
 
 ```bash
-poetry install
-poetry run pytest
+pixi run pytest
 ```
 
 You can set the environment variable `INCLUDE_ORNL_TESTS=1` if you want to test the examples that rely on specific ORNL resources. Note that you will need to run them from a location that has access to these resources.
