@@ -36,24 +36,6 @@ class App(ThemedApp):
         self.set_theme("CompactTheme")
 
         with super().create_ui() as layout:
-            # TODO: move this into nova-trame
-            self._download = client.JSEval(
-                exec=(
-                    "async ($event) => {"
-                    "  const [filename, mimetype, content] = $event;"
-                    "  const blob = new window.Blob([content], {type: mimetype});"
-                    "  const url = window.URL.createObjectURL(blob);"
-                    "  const anchor = window.document.createElement('a');"
-                    "  anchor.setAttribute('href', url);"
-                    "  anchor.setAttribute('download', filename);"
-                    "  window.document.body.appendChild(anchor);"
-                    "  anchor.click();"
-                    "  window.document.body.removeChild(anchor);"
-                    "  window.setTimeout(() => window.URL.revokeObjectURL(url), 1000);"
-                    "}"
-                )
-            ).exec
-
             with layout.content:
                 with VBoxLayout(classes="mb-2", stretch=True):
                     # Please note that this is a dangerous operation. You should ensure that you restrict this
@@ -66,7 +48,7 @@ class App(ThemedApp):
                     )
 
                 with VBoxLayout(halign="center"):
-                    vuetify.VBtn("Download Selected Files", click=self.download_files)
+                    vuetify.VBtn("Download Selected Files", click=self.prepare_download)
 
     def create_vm(self) -> None:
         binding = TrameBinding(self.state)
@@ -74,8 +56,11 @@ class App(ThemedApp):
         model = Model()
         self.view_model = ViewModel(model, binding)
 
-    async def download_files(self) -> None:
+    async def prepare_download(self) -> None:
         content = self.view_model.prepare_zip()
-        if content and self._download:
-            # TODO: call new nova-trame method here
-            self._download(["selected_files.zip", "application/zip", content])
+        if content:
+            # See https://nova-application-development.readthedocs.io/projects/nova-trame/en/stable/api.html#nova.trame.ThemedApp.download_file
+            # for more information on the method.
+            # application/zip is the MIME type of the data to download. See https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types
+            # for further discussion and common types.
+            self.download_file("selected_files.zip", "application/zip", content)

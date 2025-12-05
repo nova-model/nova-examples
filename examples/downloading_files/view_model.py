@@ -25,6 +25,7 @@ class ViewModel:
         print(f"Selected files updated: {self.model.get_selected_files()}")
 
     def prepare_zip(self) -> Optional[bytes]:
+        # To download a file through the browser, we need an in-memory bytestream that we can send to the browser.
         selected_files = self.model.get_selected_files()
         if not selected_files:
             return None
@@ -33,7 +34,7 @@ class ViewModel:
         with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED, False) as zip_file:
             for file_path in selected_files:
                 file_name = os.path.basename(file_path)
-                print(file_name)
+                # arcname allows us to specify a folder into which the files will be extracted.
                 zip_file.write(file_path, arcname=f"test/{file_name}")
 
         return zip_buffer.getvalue()
