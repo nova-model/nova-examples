@@ -46,6 +46,9 @@ class App(ThemedApp):
                 with VBoxLayout(stretch=True):
                     # If a component doesn't support the v_model parameter, as with the Monaco editor, then we can
                     # set the initial value and listen to the events manually.
+                    # Unlike our InputField component, code.Editor doesn't support a v_model. In this case, we can
+                    # use model_value to set the initial value of the component and then listen to the input event
+                    # manually.
                     code.Editor(
                         ref="monaco_container",
                         model_value=("data",),
