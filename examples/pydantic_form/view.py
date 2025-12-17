@@ -41,11 +41,7 @@ class App(ThemedApp):
                     # v_model allows you to just pass the parameter_name as a string.
                     # This typically does not work when binding other parameters.
                     InputField(v_model="data.domain_name")
-
-                    # Try just passing a string to model_value, and see what happens here!
-                    InputField(
-                        model_value=("data.email",), column_span=2, label="Computed Email Address", readonly=True
-                    )
+                    InputField(v_model="data.email", column_span=2, label="Computed Email Address", readonly=True)
 
                     # If you need to trigger some Python code on an event, then you can call view model functions
                     # directly.
